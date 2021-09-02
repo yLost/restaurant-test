@@ -1,0 +1,24 @@
+<div class="product-preview">
+    <div class="content">
+        <div class="title">
+            <h1>Produtos</h1>
+            <button (click)="close.emit('close')">X</button>
+        </div>
+        <div *ngIf="productsResponse == null" class="items">
+            <img src="assets/loadingTransparent.webp" class="loading">
+        </div>
+        <div *ngIf="productsResponse != null" class="items">
+            <h2 *ngIf="productsResponse.products.length == 0" class="no-item">Não há produtos disponíveis</h2>
+            <button *ngFor="let product of productsResponse.products" class="item" [class.active]="hasProduct(product.id)" (click)="addProduct(product.id)">
+                <h1>{{product.title}}</h1>
+                <img
+                    src="https://s2.glbimg.com/Eld2ljITP6TENwKij9MfQK4Qdcw=/0x0:309x163/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/a/b/rneHvQRES5ASwIenFxnw/pao-de-alho.jpg">
+                <div class="row">
+                    <h1>Preço:</h1>
+                    <h2>R${{product.price}}</h2>
+                </div>
+                <h1>{{product.description}}</h1>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="demand-preview">
+    <div class="content">
+        <span>
+            <div class="title">
+                <h1>Pedido: #{{demand?.id}}</h1>
+                <button (click)="close.emit('close')">X</button>
+            </div>
+            <div class="inputs">
+                <span>
+                    <h1>Nome:</h1>
+                    <input type="text" name="client" placeholder="Nome do cliente" value="Cliente {{demand?.id}}">
+                </span>
+                <span class="demands">
+                    <div class="title">
+                        <h1>Pedidos</h1>
+                        <button (click)="viewProducts()">Alterar</button>
+                    </div>
+                    <div class="items">
+                        <div *ngFor="let _demand of demand?.demands" class="item">
+                            <h1>{{getProduct(_demand)?.title}}</h1>
+                            <img src="https://s2.glbimg.com/Eld2ljITP6TENwKij9MfQK4Qdcw=/0x0:309x163/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/a/b/rneHvQRES5ASwIenFxnw/pao-de-alho.jpg">
+                            <div class="row">
+                                <h1>Preço:</h1>
+                                <h2>R${{getProduct(_demand)?.price}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </span>
+        <div class="actions">
+            <button class="cancel">Cancelar Pedido</button>
+            <button class="save">Checkout</button>
+        </div>
+    </div>
+</div>

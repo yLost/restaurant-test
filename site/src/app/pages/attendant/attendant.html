@@ -1,0 +1,45 @@
+<div class="attendant">
+    <div class="options">
+        <div class="title">
+            <h1>Atendente</h1>
+        </div>
+        <ul>
+            <li><a>Pedidos</a></li>
+        </ul>
+    </div>
+    <div class="body">
+        <div class="body-title">
+            <h1>/ Pedidos</h1>
+        </div>
+        <div class="content">
+            <div class="title">
+                <h1>Listagem de mesas</h1>
+                <button>Novo Pedido</button>
+            </div>
+            <div *ngIf="demandResponse == null" class="collection">
+                <img src="assets/loadingTransparent.webp" class="loading">
+            </div>
+            <div v *ngIf="demandResponse != null" class="collection">
+                <h1 *ngIf="demandResponse.demands.length == 0" class="no-box">Não há demandas
+                    criadas!</h1>
+
+                <button *ngFor="let demand of demandResponse.demands" (click)="setDemand(demand.table)" class="box">
+                    <div class="box-title">
+                        <h1 class="">Em Aberto</h1>
+                        <h1>{{demand.table}}</h1>
+                    </div>
+                    <h2>Cliente {{demand.id}}</h2>
+                    <div class="resume">
+                        <h2>Pedidos</h2>
+                        <h1 *ngIf="demand.demands.length == 0">Não há pedidos</h1>
+                        <h1 *ngFor="let product of demand.demands">{{getProduct(product)?.title}}</h1>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<span *ngIf="viewDemand != null">
+    <app-attendant-table [demand]="viewDemand" (close)="viewDemand = null" (toggleProducts)="viewProducts = !viewProducts"></app-attendant-table>
+    <app-attendant-products *ngIf="viewProducts" [products]="viewDemand.demands" (close)="viewProducts = false"></app-attendant-products>
+</span>

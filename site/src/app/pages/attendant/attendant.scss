@@ -1,0 +1,159 @@
+.attendant {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    .options {
+        width: 15vw;
+        background: linear-gradient(0deg, #e65c5c 30%, #a72f2f 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.9);
+        .title {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-bottom: 0.1rem solid rgba(255, 255, 255, 0.336);
+            h1 {
+                font-size: 1.7rem;
+                font-weight: bold;
+                color: white;
+                text-transform: uppercase;
+            }
+        }
+        ul {
+            li {
+                width: 10rem;
+                padding: 0.5rem;
+                border-bottom: 0.1rem solid rgba(255, 255, 255, 0.336);
+                text-align: center;
+                cursor: pointer;
+                transition: all ease 500ms;
+                a {
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                    color: white;
+                    font-weight: bold;
+                }
+                &:hover {
+                    width: 12rem;
+                }
+            }
+        }
+    }
+
+    .body {
+        width: 85vw;
+        .body-title {
+            height: 10vh;
+            background: linear-gradient(-30deg, #e65c5c 30%, #a72f2f 100%);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0.2rem 0.1rem 0.3rem rgba(0, 0, 0, 0.9);
+            h1 {
+                font-size: 0.9rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: white;
+            }
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            grid-gap: 2rem;
+            .title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: white;
+                padding: 1rem 0.5rem;
+                border-radius: 0.5rem;
+                box-shadow: -0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+                h1 {
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: #303030;
+                }
+                button {
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: #303030;
+                    background-color: transparent;
+                    cursor: pointer;
+                }
+            }
+            .collection {
+                display: flex;
+                flex-wrap: wrap;
+                grid-gap: 1rem;
+                .loading {
+                    width: 5rem;
+                    height: 5rem;
+                }
+                .box {
+                    width: 10rem;
+                    height: 10rem;
+                    background-color: white;
+                    border-radius: 0.5rem;
+                    padding: 0.5rem;
+                    box-shadow: -0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    transition: all ease 500ms;
+                    &:hover {
+                        box-shadow: none;
+                    }
+                    .box-title {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+                        h1 {
+                            font-size: 0.9rem;
+                            font-weight: bold;
+                            color: #303030;
+                            text-transform: uppercase;
+                        }
+                    }
+                    h2 {
+                        font-size: 0.8rem;
+                        color: #202020;
+                        font-weight: 600;
+                        width: 100%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .resume {
+                        height: 5rem;
+                        overflow-y: hidden;
+                        border-top: 0.1rem solid rgba(48, 48, 48, 0.2);
+                        padding: 0.5rem 0;
+                        h2 {
+                            font-size: 0.9rem;
+                            color: #202020;
+                            font-weight: bold;
+                            text-transform: uppercase;
+                            margin-bottom: 0.5rem;
+                            text-align: center;
+                        }
+                        h1 {
+                            font-size: 0.8rem;
+                            color: #202020;
+                            font-weight: 600;
+                            width: 9rem;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
