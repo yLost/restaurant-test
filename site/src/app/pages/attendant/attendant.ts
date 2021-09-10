@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { getDemand, getDemands } from "src/app/services/demands/DemandsService";
+import { deleteDemand, getDemand, getDemands } from "src/app/services/demands/DemandsService";
 import Demand from "src/app/services/demands/structures/Demand";
 import DemandResponse from "src/app/services/demands/structures/DemandResponse";
 import { getProducts } from "src/app/services/products/ProductsService";
 import ProductResponse from "src/app/services/products/structures/ProductResponse";
 import Product from "src/app/services/products/structures/Product";
+import DemandStatus from "src/app/services/demands/structures/DemandStatus";
 
 @Component({
     selector: "app-attendant",
@@ -17,19 +18,22 @@ export default class App implements OnInit {
     viewDemand: Demand | null = null;
     viewProducts = false;
     productsResponse: ProductResponse | null = null;
+    createDemand: Boolean = true;
 
     ngOnInit(): void {
         this.loadDemands();
-        getProducts().then(response => this.productsResponse = response);
+        this.loadProducts();
+    }
+
+    async loadProducts(): Promise<void> {
+        const response = await getProducts();
+        this.productsResponse = response;
     }
 
     async loadDemands(): Promise<void> {
         this.demandResponse = null;
         const response = await getDemands();
         this.demandResponse = response;
-        console.log(this.demandResponse)
-
-        this.viewDemand = this.demandResponse.demands[0];
     }
 
     async setDemand(id: Number): Promise<boolean> {
@@ -49,5 +53,48 @@ export default class App implements OnInit {
             }
         }
         return null;
+    }
+
+    parseDemandStatus(statusCode: Number): String {
+        switch (statusCode) {
+            case DemandStatus.AWAITING_NEW_DEMANDS:
+                return "Aguardando pedido";
+            case DemandStatus.CLOSED:
+                return "Pedido encerrado";
+            case DemandStatus.OPEN:
+                return "Em aberto";
+            case DemandStatus.PROCESSING:
+                return "Em preparo";
+        }
+
+        return "Não encontrado";
+    }
+
+    async cancelOpenedDemand(): Promise<void> {
+        if (!this.viewDemand) {
+            return;
+        }
+
+        const response = await deleteDemand(this.viewDemand.id);
+        if (response) {
+            this.viewDemand.status = DemandStatus.CLOSED;
+            this.viewDemand = null;
+        }
+    }
+
+    async checkoutOpened(): Promise<void> {
+
+    }
+
+    async onCreateDemand(id: Number): Promise<void> {
+        this.createDemand = false;
+
+        await this.loadDemands();
+
+        const _demandFound = this.demandResponse?.demands.find(demand => demand.id == id);
+
+        if (_demandFound) {
+            this.viewDemand = _demandFound;
+        }
     }
 }
