@@ -20,6 +20,12 @@ export default class App implements OnInit {
     @Output()
     toggleProducts = new EventEmitter<any>();
 
+    @Output()
+    cancelDemand = new EventEmitter<any>();
+
+    @Output()
+    checkout = new EventEmitter<any>();
+
     productsResponse: ProductResponse | null = null;
 
     ngOnInit(): void {
@@ -33,7 +39,7 @@ export default class App implements OnInit {
     getProduct(id: Number): Product | null {
         if (this.productsResponse) {
             const product = this.productsResponse.products.find(product => product.id == id);
-            if (product){
+            if (product) {
                 return product;
             }
         }

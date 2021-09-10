@@ -29,8 +29,8 @@
             </div>
         </span>
         <div class="actions">
-            <button class="cancel">Cancelar Pedido</button>
-            <button class="save">Checkout</button>
+            <button class="cancel" (click)="cancelDemand.emit('cancel')">Cancelar Pedido</button>
+            <button class="save" (click)="checkout.emit('checkout')">Checkout</button>
         </div>
     </div>
 </div>
