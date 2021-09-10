@@ -12,13 +12,14 @@ async function init() {
 
     router.use(require("./get"));
     router.use(require("./post"));
+    router.use(require("./patch"));
 }
 
 /**
  * @returns {Promise<DemandResponse>}
  */
 async function getDemands() {
-    const response = await execute("SELECT * FROM demand;");
+    const response = await execute("SELECT * FROM demand WHERE status != 3;");
 
     if (response.rows.length > 0) {
 
