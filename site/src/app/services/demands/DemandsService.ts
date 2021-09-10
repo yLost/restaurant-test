@@ -1,6 +1,7 @@
 import DemandResponse from "./structures/DemandResponse";
 import { environment } from "src/environments/environment";
 import Demand from "./structures/Demand";
+import DemandStatus from "./structures/DemandStatus";
 
 export async function getDemands(): Promise<DemandResponse> {
     const response = await fetch(environment.api + "/v1/demands", {
@@ -33,7 +34,8 @@ export async function createDemand(table: Number): Promise<Number | null> {
     const response = await fetch(environment.api + "/v1/demands", {
         method: "POST",
         headers: {
-            "Authorization": "adminpassword"
+            "Authorization": "adminpassword",
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
             table: table
@@ -53,11 +55,29 @@ export async function updateDemand(id: Number, { status = null, demands = null }
     const response = await fetch(environment.api + "/v1/demands/" + id, {
         method: "PATCH",
         headers: {
-            "Authorization": "adminpassword"
+            "Authorization": "adminpassword",
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
             status: status,
             demands: demands
+        })
+    });
+
+    const resp = await response.json();
+    return resp.message == "Success";
+}
+
+export async function deleteDemand(id: Number): Promise<Boolean> {
+
+    const response = await fetch(environment.api + "/v1/demands/" + id, {
+        method: "PATCH",
+        headers: {
+            "Authorization": "adminpassword",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            status: DemandStatus.CLOSED
         })
     });
 
