@@ -18,7 +18,7 @@ router.patch("/demands/:id", checkAuth(Permissions.UPDATE_DEMANDS), async (req, 
             return res.status(404).json({ message: "Demand not found", code: 404 });
         }
 
-        const response = await DemandsManager.updateDemand(id, req.body);
+        const response = await DemandsManager.updateDemand(_id, req.body);
 
         if (response != true) {
             return res.status(202).json({ message: "Demand cannot be updated", code: 202 });
