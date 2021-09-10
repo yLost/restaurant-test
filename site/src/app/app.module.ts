@@ -7,6 +7,7 @@ import App from "./app";
 import Kitchen from './pages/kitchen/kitchen';
 import Attendant from './pages/attendant/attendant';
 import AttendantTable from './pages/attendant/table/table';
+import AttendantCreateTable from './pages/attendant/create-table/create-table';
 import AttendantProducts from './pages/attendant/products/products';
 import Login from './pages/login/login';
 
@@ -29,6 +30,7 @@ const routes: Routes = [
         Login,
         Attendant,
         AttendantTable,
+        AttendantCreateTable,
         AttendantProducts,
     ],
     providers: [],

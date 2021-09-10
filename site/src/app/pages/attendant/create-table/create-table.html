@@ -1,0 +1,27 @@
+<div class="demand-preview">
+    <div class="content">
+        <span>
+            <div class="title">
+                <h1>Criação de Demanda</h1>
+                <button (click)="close.emit('close')">X</button>
+            </div>
+            <div class="inputs">
+                <div class="inp">
+                    <h1>Número de Identificação da Mesa</h1>
+                    <input type="number" name="table" placeholder="Ex.: 1">
+                </div>
+                <div class="inp">
+                    <h1>Nome do Cliente</h1>
+                    <input type="text" name="client" placeholder="Ex.: João Paulo">
+                </div>
+            </div>
+        </span>
+        <div class="actions">
+            <button class="cancel" (click)="close.emit('close')">Cancelar</button>
+            <div *ngIf="inProcess" class="loading">
+                <img src="assets/loadingTransparent.webp">
+            </div>
+            <button *ngIf="!inProcess" class="save" (click)="createDemand()">Criar</button>
+        </div>
+    </div>
+</div>
